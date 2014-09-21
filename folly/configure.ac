@@ -4,6 +4,11 @@
 
 AC_PREREQ(2.59)
 
+m4_define([m4_chomp_all],
+[m4_format([[%.*s]], m4_bregexp(m4_translit([[$1]], [/], [/ ]), [/*$]), [$1])])
+
+m4_define([m4_esyscmd_s], [m4_chomp_all(m4_esyscmd([$1]))])
+
 m4_define([folly_version_str], m4_esyscmd_s([cat VERSION]))
 
 AC_INIT([folly], m4_translit(folly_version_str, [:], [.]), [folly@fb.com])
